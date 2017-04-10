@@ -2,7 +2,7 @@ import attr
 import itertools
 from attr.validators import instance_of
 from numbers import Number
-from grafanalib.validators import *
+from grafanalib.validators import is_interval, is_in, is_color_code, is_list_of
 from grafanalib.core import (
     RGBA, Percent, Pixels, DashboardLink,
     DEFAULT_ROW_HEIGHT, BLANK, GREEN)
@@ -757,7 +757,7 @@ class ZabbixTriggersPanel(object):
     lastChangeFormat = attr.ib(default="")
     limit = attr.ib(default=10, validator=instance_of(int))
     links = attr.ib(default=attr.Factory(list),
-                    validator=list_of(DashboardLink))
+                    validator=is_list_of(DashboardLink))
     markAckEvents = attr.ib(default=False, validator=instance_of(bool))
     minSpan = attr.ib(default=None)
     okEventColor = attr.ib(default=GREEN,
